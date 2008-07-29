@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/split_testing"]
+	path = vendor/plugins/split_testing
+	url = epall@bay.joyent.us:git/split_testing.git
