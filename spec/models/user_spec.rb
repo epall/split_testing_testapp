@@ -22,4 +22,11 @@ describe User do
     
     SplitTesting::FeatureTester.find(:first, :conditions => {:feature_id => feat.id, :tester_id => @user.id}).should_not be_enabled
   end
+  
+  it "should also enable testing using symbols" do
+    feat = SplitTesting::Feature.generate(:name => 'foo')
+    @user.enable_tester(:foo)
+    
+    SplitTesting::FeatureTester.find(:first, :conditions => {:feature_id => feat.id, :tester_id => @user.id}).should be_enabled
+  end
 end
