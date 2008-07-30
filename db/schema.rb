@@ -9,11 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080728225805) do
+ActiveRecord::Schema.define(:version => 20080729220315) do
+
+  create_table "feature_testers", :force => true do |t|
+    t.integer "feature_id"
+    t.integer "tester_id"
+    t.boolean "enabled"
+  end
 
   create_table "features", :force => true do |t|
     t.string  "name"
     t.boolean "enabled"
+  end
+
+  create_table "users", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
