@@ -1,0 +1,56 @@
+Story: enabling features
+  As a developer
+  I want to enable and disable features on a granular basis
+  So that the right users see the appropriate features
+
+  Scenario: enabling access
+    Given a user
+    And a feature 'awesomeness'
+    And a page with feature 'awesomeness'
+    When the feature 'awesomeness' is enabled
+    And the page is rendered
+    Then the page should show the feature 'awesomeness'
+    
+  Scenario: disabling access
+    Given a user
+    And a feature 'awesomeness'
+    And a page with feature 'awesomeness'
+    When the feature 'awesomeness' is disabled
+    And the page is rendered
+    Then the page should not show the feature 'awesomeness'
+  
+  Scenario: preferential access
+    Given a user
+    And a feature 'beta'
+    And a page with feature 'beta'
+    When the feature 'beta' is enabled
+    And the feature 'beta' is enabled for the user
+    And the page is rendered
+    Then the page should show the feature 'beta'
+  
+  Scenario: preferential access with a broken feature
+    Given a user
+    And a feature 'broken'
+    And a page with feature 'broken'
+    When the feature 'broken' is disabled
+    And the feature 'broken' is enabled for the user
+    And the page is rendered
+    Then the page should not show the feature 'broken'
+  
+  Scenario: restricted access granted
+    Given a user
+    And a restricted feature 'restricted'
+    And a page with feature 'restricted'
+    When the feature 'restricted' is enabled
+    And the feature 'restricted' is enabled for the user
+    And the page is rendered
+    Then the page should show the feature 'restricted'
+  
+  Scenario: restricted access denied
+    Given a user
+    And a restricted feature 'restricted'
+    And a page with feature 'restricted'
+    When the feature 'restricted' is enabled
+    And the feature 'restricted' is disabled for the user
+    And the page is rendered
+    Then the page should not show the feature 'restricted'
