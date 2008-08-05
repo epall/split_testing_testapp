@@ -1,0 +1,25 @@
+Story: tester roles
+  As a tester
+  I want to have roles
+  So that I don't have to individually enable features every time something comes out
+  
+  Scenario: role granting access
+    Given a user
+    And a restricted feature 'coolnewthing'
+    And a role 'ubertester'
+    And a page with feature 'coolnewthing'
+    When the user has the role 'ubertester'
+    And the role 'ubertester' is enabled for feature 'coolnewthing'
+    And the page is rendered
+    Then the page should show the feature 'coolnewthing'
+    
+  Scenario: role not granting access
+    Given a user
+    And a restricted feature 'coolnewthing'
+    And a role 'ubertester'
+    And a role 'zzzzz'
+    And a page with feature 'coolnewthing'
+    When the user has the role 'ubertester'
+    And the role 'zzzzz' is enabled for feature 'coolnewthing'
+    And the page is rendered
+    Then the page should not show the feature 'coolnewthing'

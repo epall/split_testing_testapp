@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080730220210) do
+ActiveRecord::Schema.define(:version => 20080804204917) do
 
   create_table "feature_testers", :force => true do |t|
     t.integer "feature_id"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(:version => 20080730220210) do
     t.string  "name"
     t.boolean "enabled"
     t.boolean "restricted"
+  end
+
+  create_table "features_roles", :force => true do |t|
+    t.integer "feature_id"
+    t.integer "role_id"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "roles_testers", :force => true do |t|
+    t.integer "role_id"
+    t.integer "tester_id"
   end
 
   create_table "users", :force => true do |t|
