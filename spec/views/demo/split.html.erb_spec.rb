@@ -4,6 +4,7 @@ describe "/demo/split" do
   it "should show feature when enabled" do
     feature = mock("feature1")
     feature.should_receive(:enabled?).and_return(true)
+    feature.stub!(:restricted?).and_return(false)
     SplitTesting::Feature.stub!(:find).and_return(feature)
     
     render "/demo/split"
@@ -12,6 +13,7 @@ describe "/demo/split" do
   end
   it "should not show feature when disabled" do
     feature = mock("feature1")
+    feature.stub!(:restricted?).and_return(false)
     feature.should_receive(:enabled?).and_return(false)
     SplitTesting::Feature.stub!(:find).and_return(feature)
     

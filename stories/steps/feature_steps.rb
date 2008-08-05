@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + "/../helper")
 
 steps_for :features do
-  Given /a(.* )feature '$feat'/ do |restrict, featurename|
+  Given /a( restricted)? feature '(.*)'/ do |restrict, featurename|
     @features ||= {}
-    @features[featurename] = SplitTesting::Feature.generate(:name => featurename)
-    @features[featurename].update_attribute('restricted', true) if restrict == " restricted "
+    @features[featurename] = SplitTesting::Feature.generate(:name => featurename, :enabled => true)
+    @features[featurename].update_attribute('restricted', true) if restrict =~ /restricted/
   end
 
   When 'the feature \'$feat\' is enabled' do |featurename|
